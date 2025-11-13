@@ -15,7 +15,7 @@ CoreKit is a modular C# utility library designed to streamline Unity and .NET de
 ## Getting Started
 
 1. **Clone the repository:**
-   git clone https://github.com/YevheniiKost/MainPortfolioProject.git
+   git clone https://github.com/YevheniiKost/CoreKit.git
 2. **Import into Unity or reference in your .NET project.**
 
 3. **Example Usage:**
