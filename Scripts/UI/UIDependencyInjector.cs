@@ -1,10 +1,25 @@
+using UnityEngine;
+using YeKostenko.CoreKit.DI;
+
+using Logger = YeKostenko.CoreKit.Logging.Logger;
+
 namespace YeKostenko.CoreKit.UI
 {
     public class UIDependencyInjector : IDependencyInjector
     {
+        private readonly Container _container;
+        
+        public UIDependencyInjector(Container container)
+        {
+            _container = container;
+        }
+        
         public void Inject(object target)
         {
-            // todo: call custom injection logic if needed
+            if(target is MonoBehaviour monoBehaviour)
+                _container.InjectInto(monoBehaviour);
+            else
+                Logger.LogWarning($"Cannot inject dependencies into {target.GetType().Name}. It is not a MonoBehaviour.");
         }
     }
 }

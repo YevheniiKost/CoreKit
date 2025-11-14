@@ -1,4 +1,4 @@
-﻿namespace YeKostenko.CoreKit.Scripts.App
+﻿namespace YeKostenko.CoreKit.App
 {
     public interface IAppPauseListener
     {

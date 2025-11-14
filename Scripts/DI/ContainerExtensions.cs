@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace YeKostenko.CoreKit.DI
@@ -9,8 +10,13 @@ namespace YeKostenko.CoreKit.DI
             LifeTime lifeTime)
         {
             container.Bind<TInterface>();
-            var method = container.GetType()
-                .GetMethod(nameof(Container.RegisterBinding), BindingFlags.NonPublic | BindingFlags.Instance);
+            var method = container
+                .GetType()
+                .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(m => m.Name == nameof(Container.RegisterBinding))
+                .Where(m => m.IsGenericMethodDefinition)
+                .SingleOrDefault(m => m.GetGenericArguments().Length == 2);
+            
             if (method == null) throw new InvalidOperationException("RegisterBinding method not found.");
 
             method.MakeGenericMethod(typeof(TInterface), implementationType)

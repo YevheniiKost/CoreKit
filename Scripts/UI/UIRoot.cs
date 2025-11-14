@@ -2,6 +2,7 @@
 
 namespace YeKostenko.CoreKit.UI
 {
+    [DefaultExecutionOrder(-100)]
     public class UIRoot : MonoBehaviour
     {
         public static UIRoot Instance { get; private set; }
@@ -15,8 +16,11 @@ namespace YeKostenko.CoreKit.UI
             if (Instance != null) { Destroy(gameObject); return; }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
 
-            _uiFactory = new UIFactory(new UIDependencyInjector());
+        public void Initialize(IDependencyInjector injector)
+        {
+            _uiFactory = new UIFactory(injector);
             UIManager = new UIManager(_uiFactory, _uiContainer);
         }
     }

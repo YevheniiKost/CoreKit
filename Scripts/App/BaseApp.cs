@@ -2,7 +2,7 @@
 
 using Logger = YeKostenko.CoreKit.Logging.Logger;
 
-namespace YeKostenko.CoreKit.Scripts.App
+namespace YeKostenko.CoreKit.App
 {
     public abstract class BaseApp : MonoBehaviour
     {
@@ -41,10 +41,10 @@ namespace YeKostenko.CoreKit.Scripts.App
             OnAppUpdate();
 
 #if UNITY_ANDROID
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnAppBackButton();
-        }
+        }*/
 #endif
         }
 
