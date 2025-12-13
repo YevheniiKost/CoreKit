@@ -7,6 +7,7 @@ namespace YeKostenko.CoreKit.StateMachine
     {
         private readonly Dictionary<Type, IState> _states = new();
         private IState _currentState;
+        private IState _previousState;
 
         public TContext Context { get; }
 
@@ -25,9 +26,13 @@ namespace YeKostenko.CoreKit.StateMachine
             var newState = _states[typeof(T)];
             newState.Prepare(payload);
 
+            _previousState = _currentState;
+            
             _currentState?.Exit();
             _currentState = newState;
             _currentState.Enter(payload);
+            
+            OnChangeState(_previousState, _currentState);
         }
 
         public T GetState<T>() where T : IState
@@ -47,6 +52,11 @@ namespace YeKostenko.CoreKit.StateMachine
             
             _states.Clear();
             _currentState = null;
+        }
+
+        protected virtual void OnChangeState(IState previousState, IState newState)
+        {
+            
         }
     }
 }
