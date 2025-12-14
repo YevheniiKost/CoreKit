@@ -30,9 +30,8 @@ namespace YeKostenko.CoreKit.StateMachine
             
             _currentState?.Exit();
             _currentState = newState;
-            _currentState.Enter(payload);
-            
             OnChangeState(_previousState, _currentState);
+            _currentState.Enter(payload);
         }
 
         public T GetState<T>() where T : IState

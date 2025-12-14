@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -10,6 +11,8 @@ namespace YeKostenko.CoreKit.DI
 {
     public static class UnityInjection
     {
+        private static readonly List<MonoBehaviour> s_buffer = new(512);
+        
         public static T InstantiateWithInjection<T>(this Container container, GameObject prefab,
             Transform parent = null) where T : MonoBehaviour
         {
@@ -37,6 +40,19 @@ namespace YeKostenko.CoreKit.DI
                 .ToArray();
 
             injectMethod.Invoke(mono, parameters);
+        }
+        
+        public static void InjectIntoHierarchy(this Container container, MonoBehaviour root)
+        {
+            s_buffer.Clear();
+            root.GetComponentsInChildren(true, s_buffer);
+            
+            foreach (MonoBehaviour mono in s_buffer)
+            {
+                container.InjectInto(mono);
+            }
+            
+            s_buffer.Clear();
         }
 
         public static void InjectIntoAllSceneMonos(this Container container)
