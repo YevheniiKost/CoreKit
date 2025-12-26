@@ -1,9 +1,8 @@
 using UnityEngine;
-using YeKostenko.CoreKit.DI;
 
 using Logger = YeKostenko.CoreKit.Logging.Logger;
 
-namespace YeKostenko.CoreKit.UI
+namespace YeKostenko.CoreKit.DI
 {
     public class MonoBehDependencyInjector : IDependencyInjector
     {

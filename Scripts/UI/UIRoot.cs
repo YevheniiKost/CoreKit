@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using YeKostenko.CoreKit.DI;
 
 namespace YeKostenko.CoreKit.UI
 {

@@ -23,7 +23,7 @@ namespace YeKostenko.CoreKit.Scripts.Saving
             _migrationService = migrationService;
         }
         
-        public void RegisterModule(ISaveDataProvider module)
+        public void RegisterProvider(ISaveDataProvider module)
         {
             if (!_modules.Contains(module))
                 _modules.Add(module);
