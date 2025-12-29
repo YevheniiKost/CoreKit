@@ -1,4 +1,4 @@
-namespace YeKostenko.CoreKit.UI
+namespace YeKostenko.CoreKit.DI
 {
     public interface IDependencyInjector
     {

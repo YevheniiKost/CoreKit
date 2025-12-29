@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using YeKostenko.CoreKit.DI;
 
 namespace YeKostenko.CoreKit.UI
 {
