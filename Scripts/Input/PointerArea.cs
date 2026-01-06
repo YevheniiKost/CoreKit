@@ -15,6 +15,7 @@ namespace YeKostenko.CoreKit.Input
         public bool IsPointerDown { get; private set; }
         
         public event Action OnPointerDownEvent;
+        public event Action OnPointerEvent;
         public event Action OnPointerUpEvent;
 
         public void OnPointerDown(PointerEventData eventData)
@@ -27,6 +28,14 @@ namespace YeKostenko.CoreKit.Input
         {
             IsPointerDown = false;
             OnPointerUpEvent?.Invoke();
+        }
+
+        private void Update()
+        {
+            if (IsPointerDown)
+            {
+                OnPointerEvent?.Invoke();
+            }
         }
     }
 }
