@@ -18,12 +18,20 @@ namespace YeKostenko.CoreKit.UI
 
         public async UniTask<T> OpenWindowAsync<T>(IUIContext context = null, bool modal = false) where T : UIWindow
         {
-            var window = await _factory.CreateWindowAsync<T>(_container);
-            await window.OnCreateAsync(context);
-            if (modal) UIBlocker.ShowAbove(window.transform);
-            await window.OnOpenAsync();
-            _windowStack.Push(new UIStackEntry(window, modal));
-            return window;
+            try
+            {
+                var window = await _factory.CreateWindowAsync<T>(_container);
+                await window.OnCreateAsync(context);
+                if (modal) UIBlocker.ShowAbove(window.transform);
+                await window.OnOpenAsync();
+                _windowStack.Push(new UIStackEntry(window, modal));
+                return window;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Failed to open window of type {typeof(T).Name}: {e}");
+                throw;
+            }
         }
 
         public async UniTask CloseTopWindowAsync()
