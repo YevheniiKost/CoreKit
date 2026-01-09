@@ -11,6 +11,9 @@ namespace YeKostenko.CoreKit.Extensions
 
         public static void Shuffle<T>(this IList<T> list)
         {
+            if (list == null || list.Count <= 1)
+                return;
+            
             int n = list.Count;
             while (n > 1)
             {
@@ -51,9 +54,7 @@ namespace YeKostenko.CoreKit.Extensions
         public static HashSet<TOut> ConvertAll<TIn, TOut>(this HashSet<TIn> inputSet, Func<TIn, TOut> converter)
         {
             if (inputSet == null || inputSet.Count == 0)
-            {
                 return new HashSet<TOut>();
-            }
 
             HashSet<TOut> result = new HashSet<TOut>();
 
@@ -82,9 +83,7 @@ namespace YeKostenko.CoreKit.Extensions
         public static T Find<T>(this IReadOnlyList<T> list, Predicate<T> match)
         {
             if (list == null || list.Count == 0)
-            {
                 return default;
-            }
             
             for (int i = 0; i < list.Count; i++)
             {
@@ -98,9 +97,7 @@ namespace YeKostenko.CoreKit.Extensions
         public static T GetRandomElement<T>(this IList<T> list)
         {
             if (list == null || list.Count == 0)
-            {
                 return default;
-            }
             
             int randomIndex = UnityRandom.Range(0, list.Count);
             return list[randomIndex];

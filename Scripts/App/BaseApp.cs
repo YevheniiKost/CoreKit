@@ -39,13 +39,6 @@ namespace YeKostenko.CoreKit.App
             if (!_isInitialized) return;
 
             OnAppUpdate();
-
-#if UNITY_ANDROID
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OnAppBackButton();
-        }*/
-#endif
         }
 
         private void OnApplicationFocus(bool hasFocus)

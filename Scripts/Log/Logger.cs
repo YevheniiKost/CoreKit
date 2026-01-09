@@ -18,6 +18,16 @@ namespace YeKostenko.CoreKit.Logging
             s_showLogs = showLogs;
         }
         
+        public static void RegisterLogger(ILogger logger)
+        {
+            if (logger == null || Loggers.Contains(logger))
+            {
+                return;
+            }
+            
+            Loggers.Add(logger);
+        }
+        
         public static void Log(string message)
         {
             if (!s_showLogs)
