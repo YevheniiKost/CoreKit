@@ -105,7 +105,7 @@ namespace YevheniiKostenko.CoreKit.Animation
                                     ? EaseUtil.Evaluate(step.Ease, progress)
                                     : EaseUtil.EvaluateReverse(step.Ease, progress));
                             step.Apply(target, eased);
-                            t += Time.deltaTime;
+                            t += UnityEngine.Time.deltaTime;
                             yield return null;
                         }
 
@@ -146,7 +146,7 @@ namespace YevheniiKostenko.CoreKit.Animation
                             }
                         }
 
-                        t += Time.deltaTime;
+                        t += UnityEngine.Time.deltaTime;
                         yield return null;
                     }
 
