@@ -14,12 +14,13 @@ namespace YeKostenko.CoreKit.DI
             public Type ImplementationType;
             public LifeTime LifeTime;
             public object SingletonInstance;
-            public object FixedInstance; 
+            public object FixedInstance;
         }
 
         private readonly Dictionary<Type, BindingInfo> _bindings = new();
+        private readonly Dictionary<Type, Func<object>> _factories = new();
         private readonly Container _parent;
-        
+
         private bool _disposed;
 
         public Container(Container parent = null, string label = null) {
@@ -28,7 +29,7 @@ namespace YeKostenko.CoreKit.DI
 
             ContainerRegistry.Register(this);
         }
-        
+
         public string Label { get; private set; }
 
         public BindingBuilder<TInterface> Bind<TInterface>()
@@ -58,6 +59,12 @@ namespace YeKostenko.CoreKit.DI
             if (!_bindings.TryGetValue(type, out BindingInfo binding))
             {
                 return false;
+            }
+
+            if (_factories.TryGetValue(type, out Func<object> factory))
+            {
+                result = factory();
+                return true;
             }
 
             if (binding.FixedInstance != null)
@@ -160,13 +167,18 @@ namespace YeKostenko.CoreKit.DI
             };
         }
 
+        public void RegisterFactory<T>(Func<T> factory)
+        {
+            _factories[typeof(T)] = () => factory();
+        }
+
         public void Dispose()
         {
             if (_disposed)
                 return;
-            
+
             _disposed = true;
-            
+
             foreach (BindingInfo kvp in _bindings.Values) {
                 try
                 {

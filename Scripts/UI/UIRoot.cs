@@ -9,7 +9,10 @@ namespace YeKostenko.CoreKit.UI
         public static UIRoot Instance { get; private set; }
         public UIManager UIManager { get; private set; }
 
-        [SerializeField] private Transform _uiContainer;
+        [SerializeField]
+        private Transform _uiContainer;
+        [SerializeField]
+        private string _resourcesPath = "UI";
         private UIFactory _uiFactory;
 
         private void Awake()
@@ -21,7 +24,7 @@ namespace YeKostenko.CoreKit.UI
 
         public void Initialize(IDependencyInjector injector)
         {
-            _uiFactory = new UIFactory(injector);
+            _uiFactory = new UIFactory(injector, _resourcesPath);
             UIManager = new UIManager(_uiFactory, _uiContainer);
         }
     }

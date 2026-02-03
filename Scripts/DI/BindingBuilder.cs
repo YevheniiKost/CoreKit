@@ -19,6 +19,12 @@ namespace YeKostenko.CoreKit.DI
             return this;
         }
 
+        public BindingBuilder<TInterface> ToFactory(Func<TInterface> factory)
+        {
+            _container.RegisterFactory(factory);
+            return this;
+        }
+
         public void AsSingleton()
         {
             RegisterBinding(LifeTime.Singleton);
