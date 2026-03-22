@@ -13,7 +13,7 @@ namespace YeKostenko.CoreKit.Extensions
         {
             if (list == null || list.Count <= 1)
                 return;
-            
+
             int n = list.Count;
             while (n > 1)
             {
@@ -22,12 +22,12 @@ namespace YeKostenko.CoreKit.Extensions
                 (list[k], list[n]) = (list[n], list[k]);
             }
         }
-        
+
         public static List<TOut> ConvertAll<TIn, TOut>(this List<TIn> list, Func<TIn, TOut> converter)
         {
             if(list == null || list.Count == 0)
                 return new List<TOut>();
-            
+
             List<TOut> result = new List<TOut>(list.Count);
             foreach (var item in list)
             {
@@ -36,12 +36,12 @@ namespace YeKostenko.CoreKit.Extensions
 
             return result;
         }
-        
+
         public static List<TOut> ConvertAll<TIn, TOut>(this TIn[] inputArray, Func<TIn, TOut> converter)
         {
             if(inputArray == null || inputArray.Length == 0)
                 return new List<TOut>();
-            
+
             List<TOut> result = new List<TOut>(inputArray.Length);
             foreach (var item in inputArray)
             {
@@ -65,12 +65,12 @@ namespace YeKostenko.CoreKit.Extensions
 
             return result;
         }
-        
+
         public static List<TOut> ConvertAll<TIn, TOut>(this IReadOnlyList<TIn> list, Func<TIn, TOut> converter)
         {
             if(list == null || list.Count == 0)
                 return new List<TOut>();
-            
+
             List<TOut> result = new List<TOut>(list.Count);
             foreach (var item in list)
             {
@@ -79,12 +79,12 @@ namespace YeKostenko.CoreKit.Extensions
 
             return result;
         }
-        
+
         public static T Find<T>(this IReadOnlyList<T> list, Predicate<T> match)
         {
             if (list == null || list.Count == 0)
                 return default;
-            
+
             for (int i = 0; i < list.Count; i++)
             {
                 if (match(list[i]))
@@ -98,11 +98,24 @@ namespace YeKostenko.CoreKit.Extensions
         {
             if (list == null || list.Count == 0)
                 return default;
-            
+
             int randomIndex = UnityRandom.Range(0, list.Count);
             return list[randomIndex];
         }
-        
+
+        public static T GetRandomElement<T>(this IEnumerable<T> enumerable)
+        {
+            if (enumerable == null)
+                return default;
+
+            List<T> list = new List<T>(enumerable);
+            if (list.Count == 0)
+                return default;
+
+            int randomIndex = UnityRandom.Range(0, list.Count);
+            return list[randomIndex];
+        }
+
         public static bool IsEmpty<T>(this IReadOnlyCollection<T> collection)
         {
             return collection == null || collection.Count == 0;
