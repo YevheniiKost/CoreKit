@@ -1,7 +1,9 @@
 {
     "name": "YeKostenko.CoreKit.Editor",
     "rootNamespace": "",
-    "references": ["GUID:f270e5d0e6981d241b92810279327bfa"],
+    "references": [
+        "GUID:f270e5d0e6981d241b92810279327bfa"
+    ],
     "includePlatforms": [
         "Editor"
     ],
