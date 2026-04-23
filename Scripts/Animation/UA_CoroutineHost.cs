@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Animation
+namespace YellowTape.CoreKit.Animation
 {
     internal class UA_CoroutineHost : MonoBehaviour
     {

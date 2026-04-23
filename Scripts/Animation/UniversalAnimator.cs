@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace YevheniiKostenko.CoreKit.Animation
+namespace YellowTape.CoreKit.Animation
 {
     [DefaultExecutionOrder(10)]
     public class UniversalAnimator : MonoBehaviour

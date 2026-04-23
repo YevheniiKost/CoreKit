@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Animation.Editor
+namespace YellowTape.CoreKit.Animation.Editor
 {
     [CustomEditor(typeof(UniversalAnimator))]
     public class UniversalAnimatorEditor : UnityEditor.Editor

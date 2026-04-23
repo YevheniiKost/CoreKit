@@ -1,4 +1,4 @@
-﻿namespace YevheniiKostenko.CoreKit.Animation
+﻿namespace YellowTape.CoreKit.Animation
 {
     public enum LoopMode
     {

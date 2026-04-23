@@ -1,4 +1,4 @@
-﻿namespace YevheniiKostenko.CoreKit.Time
+﻿namespace YellowTape.CoreKit.Time
 {
     public interface ITimeProvider
     {

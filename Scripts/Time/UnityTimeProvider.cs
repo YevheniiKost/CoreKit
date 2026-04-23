@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using YevheniiKostenko.CoreKit.Utils;
 
-namespace YevheniiKostenko.CoreKit.Time
+using YellowTape.CoreKit.Utils;
+
+namespace YellowTape.CoreKit.Time
 {
     public class UnityTimeProvider : SingletonMonoBehaviour<UnityTimeProvider>, ITimeProvider
     {

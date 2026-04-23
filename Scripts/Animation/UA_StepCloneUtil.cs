@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace YevheniiKostenko.CoreKit.Animation
+namespace YellowTape.CoreKit.Animation
 {
     internal static class UA_StepCloneUtil
     {

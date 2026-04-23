@@ -1,4 +1,6 @@
-﻿namespace YevheniiKostenko.CoreKit.Animation
+﻿using UnityEngine;
+
+namespace YellowTape.CoreKit.Animation
 {
     public static class AnimationDriverFactory
     {

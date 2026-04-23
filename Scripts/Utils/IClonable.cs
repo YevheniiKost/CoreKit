@@ -1,4 +1,4 @@
-﻿namespace YevheniiKostenko.CoreKit.Utils
+﻿namespace YellowTape.CoreKit.Utils
 {
     public interface IClonable<T>
     {

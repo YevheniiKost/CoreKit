@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Animation.Editor
+namespace YellowTape.CoreKit.Animation.Editor
 {
     [CustomEditor(typeof(AnimSequence))]
     public class AnimSequenceEditor : UnityEditor.Editor

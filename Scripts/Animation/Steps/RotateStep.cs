@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Animation
+namespace YellowTape.CoreKit.Animation
 {
     [Serializable]
     public class RotateStep : AnimStep

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Utils
+namespace YellowTape.CoreKit.Utils
 {
     public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBehaviour<T>
     {

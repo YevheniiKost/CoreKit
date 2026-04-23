@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Editor
+namespace YellowTape.CoreKit.Editor
 {
     /// <summary>
     /// Captures a GameView screenshot to PNG via menu item and Ctrl+Shift+S shortcut.

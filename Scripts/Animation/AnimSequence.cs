@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace YevheniiKostenko.CoreKit.Animation
+namespace YellowTape.CoreKit.Animation
 {
     [CreateAssetMenu(menuName = "Tools/CoreKit/Animation/AnimStep")]
     public class AnimSequence : ScriptableObject
