@@ -173,56 +173,9 @@ The `Example/` folder demonstrates a minimal application flow:
 
 # Saving
 
-## Overview
-The Saving module provides a small set of interfaces and services for persisting game/application data using a key\-\-value storage abstraction, JSON serialization, and optional migration support. It is designed to keep save logic decoupled from Unity\-specific storage details while still supporting common backends (file, PlayerPrefs).
+Modular JSON save framework: multi-slot file storage, provider-based capture/restore, dirty tracking with merge-save, migrations, and `ICloudSaveSync` hooks for future Steam Cloud.
 
-## Core concepts
+`FileJsonStorage` is for game saves. `PlayerPrefsStorage` (`IKeyValueStorage`) is for lightweight settings only.
 
-### Storage vs Serializer
-- `ISaveStorage` defines \*where\* bytes/text are stored (file system, PlayerPrefs, etc.).
-- `ISaveSerializer` defines \*how\* save data is converted to/from a persisted representation (JSON via `NewtonsoftJsonSerializer`).
-
-This split allows swapping either side without rewriting save logic.
-
-### Save data providers
-`ISaveDataProvider` (and `ISaveDataProviderWithDirty`) represent game systems that:
-- contribute their portion of data into the save model, and
-- restore themselves from loaded save data.
-
-Using providers keeps save logic modular (inventory, progression, settings, etc. can be independent).
-
-### Dirty tracking
-To avoid rewriting saves every time, providers can expose dirty state via `ISaveDataProviderWithDirty`, optionally aggregated through `ISaveDirtyTracker`. `SaveService` can then decide when a write is needed.
-
-### Migrations
-Saved data formats evolve. `ISaveMigration` and `SaveMigrationService` allow upgrading older persisted data to the current version (e.g., renaming fields, splitting one field into many, defaulting missing values) without breaking existing players.
-
-## Typical flow
-1\) Create a storage backend:
-- `FileJsonStorage` for a JSON file in a persistent location.
-- `PlayerPrefsStorage` for small settings\-like data.
-
-2\) Choose a serializer:
-- `NewtonsoftJsonSerializer` for JSON serialization.
-
-3\) Register providers:
-- Each subsystem implements `ISaveDataProvider` (optionally dirty\-aware).
-
-4\) Load on startup:
-- Read persisted data, migrate if required, then distribute loaded data to providers.
-
-5\) Save when needed:
-- Collect provider data into the save model and persist it via storage + serializer.
-
-## Best practices
-- Keep providers small and focused (one feature/system per provider).
-- Use `ISaveDataProviderWithDirty` for high\-frequency systems to reduce IO.
-- Treat migrations as deterministic, versioned transforms; never depend on runtime\-only state.
-- Prefer file storage for larger saves; keep PlayerPrefs for lightweight settings.
-
-## Troubleshooting
-- **Data not restoring**: verify the provider is registered and is applied during load (check `SaveService.cs` flow).
-- **Save file never updates**: confirm dirty tracking is enabled/used and that providers mark themselves dirty when data changes.
-- **Migration issues**: ensure migrations are ordered correctly and that the stored version is updated after applying them.
-- **Serialization failures**: validate the save data model is compatible with the configured serializer (`NewtonsoftJsonSerializer.cs`).
+See [Scripts/Saving/README.md](Scripts/Saving/README.md) for full documentation.
 
